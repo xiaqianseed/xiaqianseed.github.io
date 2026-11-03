@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tesla OAuth callback</title>
+</head>
+<body>
+<h1>Tesla OAuth callback</h1>
+<p id="out">Waiting for the authorization response…</p>
+<script>
+const p = new URLSearchParams(location.search);
+const code = p.get('code');
+const err = p.get('error');
+const el = document.getElementById('out');
+if (code) {
+  el.textContent = 'Authorization code received. Copy the full page URL from the address bar and send it back to Muse.';
+} else if (err) {
+  el.textContent = 'Authorization failed: ' + err;
+} else {
+  el.textContent = 'No authorization code in this URL. This page only shows a result after Tesla redirects back here.';
+}
+</script>
+</body>
+</html>
